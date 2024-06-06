@@ -1,0 +1,93 @@
+
+ .container {
+   display: inline-block;
+   justify-content: center;
+   align-items: center;
+   min-width: 100%;
+   width: 100%;
+ }
+
+ .search-container {
+   background-color: rgb(214, 225, 235);
+   border-radius: 30px;
+   width: 90%;
+   margin: 2% 5%;
+   padding: 5px 0;
+ }
+
+ h2 {
+   display: flex;
+   justify-content: left;
+   margin-left: 3%;
+ }
+ 
+ .search-project {
+   display: flex;
+   justify-content: center;
+ }
+
+ ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+   padding: 5%;
+ }
+ 
+ ::ng-deep .mat-form-field-infix {
+   top: -3px;
+ }
+ 
+ ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+   background-color: white;
+   border-radius: 5px;
+ }
+
+.input-container {
+   display: flex;
+   width: 90%;
+   border: 2px solid rgb(66, 64, 64);
+   border-radius: 20px;
+}
+
+.search-input {
+   background-color: white;
+}
+
+.button-container {
+   background: green;
+   border-radius: 5px;
+   margin-left: 1%;
+   padding: 1%;
+   vertical-align: center;
+}
+
+.search-icon {
+   color: white;
+}
+
+#search-button {
+   cursor: pointer;
+}
+
+.table-container {
+   width: 90%;
+   margin: 2% 5%;
+ }
+
+// mat-table styling
+table {
+   width: 100%;
+ }
+
+.mat-column-nom {
+   width: 80%;
+}
+
+th {
+   /* en-tetes */
+   font-weight: bold;
+   border-bottom: 3px solid green;
+ }
+
+ /* en-tetes et donnees */
+th, td {
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: larger;
+}
