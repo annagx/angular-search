@@ -2,7 +2,7 @@
     <div class="search-container">
       <h2>Recherche</h2>
       <div class="search-project">
-        <mat-form-field class="input-container">
+        <mat-form-field class="input-container" appearance="outline">
           <input matInput #userInput class="search-input" (keyup)="applyFilter(userInput.value)" placeholder="Saisir le nom">
         </mat-form-field>
           <button class="button-container" (click)="applyFilter(userInput.value)">
