@@ -9,16 +9,16 @@
 
  .search-container {
    background-color: rgb(214, 225, 235);
-   border-radius: 30px;
+   border-radius: 20px;
    width: 90%;
    margin: 2% 5%;
-   padding: 5px 0;
+   padding: 5px 0 12px 0;
  }
 
  h2 {
    display: flex;
    justify-content: left;
-   margin-left: 3%;
+   margin-left: 2%;
  }
  
  .search-project {
@@ -27,23 +27,26 @@
  }
 
 .input-container {
-    width: 90%;
-    height: 55px;
+    width: 93%;
+    height: 40px;
     border-radius: 5px;
     background-color: white;
+    --mat-form-field-container-height: 40px;
+    --mat-form-field-container-vertical-padding: 8px;
 }
 
 .button-container {
    background: green;
    border-radius: 5px;
-   margin-left: 1%;
-   padding: 1%;
-   vertical-align: center;
+   margin-left: 5px;
+   padding: 0 5px;
+   align-items: center;
    cursor: pointer;
 }
 
 .search-icon {
    color: white;
+   font-size: xx-large;
 }
 
 .table-container {
@@ -51,7 +54,7 @@
    margin: 2% 5%;
  }
 
-// mat-table styling
+// style pour mat-table 
 table {
    width: 100%;
  }
@@ -72,7 +75,8 @@ th, td {
    font-size: larger;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  background-color: white;
-  border-radius: 5px;
+/* bordure autour de la boite "Éléments par page" */
+::ng-deep mat-paginator .mdc-notched-outline > * {
+  border: none !important;
+  border-bottom: 1px solid black !important;
 }

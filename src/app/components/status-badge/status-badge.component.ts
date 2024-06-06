@@ -36,7 +36,7 @@ export class StatusBadgeComponent implements OnInit{
       'color': this.textColor,
       'background-color': this.backgroundColor,
       'width': 'fit-content',
-      'padding' : '0 5%',
+      'padding' : '2% 9%',
       'border-radius': '50px',
       'border': '1px solid',
       'border-color': borderColor,
