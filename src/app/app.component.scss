@@ -12,12 +12,13 @@
    width: 90%;
    margin: 2% 5%;
    padding: 5px 0 12px 0;
+   align-items: start;
  }
 
  h2 {
    display: flex;
    justify-content: left;
-   margin-left: 2%;
+   margin-left: 1%;
  }
  
  .search-project {
@@ -30,7 +31,7 @@
 }
 
 .input-container {
-    width: 90%;
+    width: 95%;
     height: 40px;
     --mat-form-field-container-height: 40px;
     --mat-form-field-container-vertical-padding: 8px;
@@ -46,9 +47,7 @@
    color: white;
 }
 
-
 // style pour mat-table 
-
 .table-container {
    width: 90%;
    margin: 2% 5%;
