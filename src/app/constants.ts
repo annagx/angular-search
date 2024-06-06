@@ -19,11 +19,11 @@ export enum StatusCode {
   }
 
   export enum TextColor {
-    Green = '#559e69',
-    Yellow = '#a19c47',
-    Red = '#d11b2d',
+    Green = '#3e784e',
+    Yellow = '#737145',
+    Red = '#5e1927',
     White = '#000',
-    Blue = '#5a8999',
+    Blue = '#325663',
   }
 
   export const THEMES: { [key: number]: Theme } = {

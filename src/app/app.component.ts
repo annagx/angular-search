@@ -8,13 +8,14 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { StatusBadgeComponent } from "./components/status-badge/status-badge.component";
 import { NgStyle } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatIconModule, StatusBadgeComponent, NgStyle]
+    imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatIconModule, MatButtonModule, StatusBadgeComponent, NgStyle]
 })
 
 export class AppComponent implements AfterViewInit {
