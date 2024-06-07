@@ -15,19 +15,19 @@
     <table mat-table [dataSource]="dataSource">
 
       <!-- Colonne Nom -->
-      <ng-container matColumnDef="nom">
+      <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nom </th>
         <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project">{{project.name}}</td>
       </ng-container>
   
       <!-- Colonne Numero de projet -->
-      <ng-container matColumnDef="no">
+      <ng-container matColumnDef="number">
         <th mat-header-cell *matHeaderCellDef> No. Projet </th>
         <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project">{{project.projectNumber}}</td>
       </ng-container>
   
       <!-- Colonne Statut -->
-      <ng-container matColumnDef="statut">
+      <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef> Statut </th>
         <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project"><app-status-badge [statusCode]="project.status"></app-status-badge></td>
       </ng-container>

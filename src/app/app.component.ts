@@ -18,8 +18,7 @@ import { ProjectService } from './services/project.service';
 })
 
 export class AppComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['nom', 'no', 'statut'];
-  //projects: Project[] = [];
+  displayedColumns: string[] = ['name', 'number', 'status'];
   dataSource = new MatTableDataSource<Project>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
