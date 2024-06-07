@@ -78,72 +78,72 @@ export enum StatusCode {
     },
 ]
 
-  export const PROJECTS: Project[] = [
-    {
-        "id" : 0,
-        "name" : "Gestion A",
-        "projectNumber" : "12345",
-        "status" : StatusCode.Approved
-    },
-    {
-        "id" : 1,
-        "name" : "Gestion B",
-        "projectNumber" : "12346",
-        "status" : StatusCode.Validation
-    },
-    {
-        "id" : 2,
-        "name" : "Gestion C",
-        "projectNumber" : "65432",
-        "status" : StatusCode.Declined
-    },
-    {
-        "id" : 3,
-        "name" : "Gestion D",
-        "projectNumber" : "99999",
-        "status" : StatusCode.Inactive
-    },
-    {
-        "id" : 4,
-        "name" : "Gestion E",
-        "projectNumber" : "00001",
-        "status" : StatusCode.Creation
-    },
-    {
-        "id" : 5,
-        "name" : "Gestion F",
-        "projectNumber" : "98745",
-        "status" : StatusCode.Creation
-    },
-    {
-        "id" : 6,
-        "name" : "Gestion G",
-        "projectNumber" : "23456",
-        "status" : StatusCode.Inactive
-    },
-    {
-        "id" : 7,
-        "name" : "Gestion AA",
-        "projectNumber" : "34567",
-        "status" : StatusCode.Approved
-    },
-    {
-        "id" : 8,
-        "name" : "Gestion BB",
-        "projectNumber" : "45678",
-        "status" : StatusCode.Declined
-    },
-    {
-        "id" : 9,
-        "name" : "Gestion CC",
-        "projectNumber" : "56789",
-        "status" : StatusCode.Creation
-    },
+//   export const PROJECTS: Project[] = [
+//     {
+//         "id" : 0,
+//         "name" : "Gestion A",
+//         "projectNumber" : "12345",
+//         "status" : StatusCode.Approved
+//     },
+//     {
+//         "id" : 1,
+//         "name" : "Gestion B",
+//         "projectNumber" : "12346",
+//         "status" : StatusCode.Validation
+//     },
+//     {
+//         "id" : 2,
+//         "name" : "Gestion C",
+//         "projectNumber" : "65432",
+//         "status" : StatusCode.Declined
+//     },
+//     {
+//         "id" : 3,
+//         "name" : "Gestion D",
+//         "projectNumber" : "99999",
+//         "status" : StatusCode.Inactive
+//     },
+//     {
+//         "id" : 4,
+//         "name" : "Gestion E",
+//         "projectNumber" : "00001",
+//         "status" : StatusCode.Creation
+//     },
+//     {
+//         "id" : 5,
+//         "name" : "Gestion F",
+//         "projectNumber" : "98745",
+//         "status" : StatusCode.Creation
+//     },
+//     {
+//         "id" : 6,
+//         "name" : "Gestion G",
+//         "projectNumber" : "23456",
+//         "status" : StatusCode.Inactive
+//     },
+//     {
+//         "id" : 7,
+//         "name" : "Gestion AA",
+//         "projectNumber" : "34567",
+//         "status" : StatusCode.Approved
+//     },
+//     {
+//         "id" : 8,
+//         "name" : "Gestion BB",
+//         "projectNumber" : "45678",
+//         "status" : StatusCode.Declined
+//     },
+//     {
+//         "id" : 9,
+//         "name" : "Gestion CC",
+//         "projectNumber" : "56789",
+//         "status" : StatusCode.Creation
+//     },
 
-    {
-        "id" : 10,
-        "name" : "A1",
-        "projectNumber" : 120,
-        "status" : StatusCode.Declined
-    }
-  ]
+//     {
+//         "id" : 10,
+//         "name" : "A1",
+//         "projectNumber" : 120,
+//         "status" : StatusCode.Declined
+//     }
+//   ]

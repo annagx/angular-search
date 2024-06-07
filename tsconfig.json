@@ -22,6 +22,7 @@
       "dom"
     ],
     "strictPropertyInitialization": false,
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

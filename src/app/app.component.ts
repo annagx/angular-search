@@ -1,14 +1,13 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { PROJECTS } from './constants';
 import { Project } from './interfaces/project';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { StatusBadgeComponent } from "./components/status-badge/status-badge.component";
 import { NgStyle } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { ProjectService } from './services/project.service';
 
 @Component({
     selector: 'app-root',
@@ -18,12 +17,22 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatIconModule, MatButtonModule, StatusBadgeComponent, NgStyle]
 })
 
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['nom', 'no', 'statut'];
-  projects: Project[] = [];
-  dataSource = new MatTableDataSource<Project>(PROJECTS);
+  //projects: Project[] = [];
+  dataSource = new MatTableDataSource<Project>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  // Injection du service
+  constructor(private projectService: ProjectService) {}
+
+  // Subscription a l'observable pour chercher les projets
+  ngOnInit(): void {
+    this.projectService.getProjects().subscribe((res) => {
+      this.dataSource = new MatTableDataSource<Project>(res);
+    })
+  }
 
   // Configurer le paginator en francais
   ngAfterViewInit(): void {

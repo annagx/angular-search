@@ -1,64 +1,68 @@
-{
-    "projects": [
+[
     {
         "id" : 0,
         "name" : "Gestion A",
         "projectNumber" : "12345",
-        "status" : ""
+        "status" : 0
     },
     {
         "id" : 1,
         "name" : "Gestion B",
         "projectNumber" : "12346",
-        "status" : ""
+        "status" : 1
     },
     {
         "id" : 2,
         "name" : "Gestion C",
         "projectNumber" : "65432",
-        "status" : ""
+        "status" : 2
     },
     {
         "id" : 3,
         "name" : "Gestion D",
         "projectNumber" : "99999",
-        "status" : ""
+        "status" : 3
     },
     {
         "id" : 4,
         "name" : "Gestion E",
         "projectNumber" : "00001",
-        "status" : ""
+        "status" : 4
     },
     {
         "id" : 5,
         "name" : "Gestion F",
         "projectNumber" : "98745",
-        "status" : ""
+        "status" : 4
     },
     {
         "id" : 6,
         "name" : "Gestion G",
         "projectNumber" : "23456",
-        "status" : ""
+        "status" : 3
     },
     {
         "id" : 7,
-        "name" : "Gestion H",
+        "name" : "Gestion AA",
         "projectNumber" : "34567",
-        "status" : ""
+        "status" : 0
     },
     {
         "id" : 8,
-        "name" : "Gestion I",
+        "name" : "Gestion BB",
         "projectNumber" : "45678",
-        "status" : ""
+        "status" : 2
     },
     {
         "id" : 9,
-        "name" : "Gestion J",
+        "name" : "Gestion CC",
         "projectNumber" : "56789",
-        "status" : ""
+        "status" : 4
+    },
+    {
+        "id" : 10,
+        "name" : "A1",
+        "projectNumber" : 120,
+        "status" : 2
     }
 ]
-}
