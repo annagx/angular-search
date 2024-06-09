@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StatusBadgeComponent } from './status-badge.component';
-import { BackgroundColor, TextColor } from '../../constants';
+import { BackgroundColor, STATUS, StatusCode, TextColor } from '../../constants';
 
 const APPROVED = "Approuvé"
 const VALIDATION = "Validation"
+const CREATION = "Création"
 
 describe('StatusBadgeComponent', () => {
   let component: StatusBadgeComponent;
@@ -27,7 +27,7 @@ describe('StatusBadgeComponent', () => {
   });
 
   it('should render green theme with approved status', () => {
-    component.statusCode = 0;
+    component.statusCode = StatusCode.Approved;
     component.ngOnInit();
     expect(component.text).toEqual(APPROVED);
     expect(component.backgroundColor).toEqual(BackgroundColor.Green);
@@ -35,11 +35,21 @@ describe('StatusBadgeComponent', () => {
   });
 
   it('should render yellow theme with validation status', () => {
-    component.statusCode = 1;
+    component.statusCode = StatusCode.Validation;
     component.ngOnInit();
     expect(component.text).toEqual(VALIDATION);
     expect(component.backgroundColor).toEqual(BackgroundColor.Yellow);
     expect(component.textColor).toEqual(TextColor.Yellow);
+  });
+
+  it('should give default status - creation', () => {
+    component.statusCode = 99;
+    component.ngOnInit();
+    const status = STATUS.find(status => status.id == StatusCode.Creation)
+    expect(component.myStatus).toEqual(status!);
+    expect(component.text).toEqual(CREATION);
+    expect(component.backgroundColor).toEqual(BackgroundColor.Blue);
+    expect(component.textColor).toEqual(TextColor.Blue);
   });
 
 });

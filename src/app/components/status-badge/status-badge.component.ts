@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { STATUS, StatusCode, THEMES } from '../../constants';
-import { Theme } from '../../interfaces/theme';
+import { STATUS, StatusCode } from '../../constants';
 import { StatusDetails } from '../../interfaces/status-details';
 import { NgStyle } from '@angular/common';
 
@@ -17,21 +16,21 @@ export class StatusBadgeComponent implements OnInit{
   @Input() statusCode: number;
   myStatus: StatusDetails;
   text: string;
-  theme: Theme;
   textColor: string;
   backgroundColor: string;
 
+  // Trouver le status correspond et ses details
   ngOnInit(): void {
     this.myStatus = STATUS.find(status => status.id == this.statusCode) || STATUS[StatusCode.Creation];
     this.text = this.myStatus.text;
-    this.theme = this.myStatus.theme;
-
-    this.textColor = this.theme.textColor;
-    this.backgroundColor = this.theme.backgroundColor;
+    
+    const theme = this.myStatus.theme;
+    this.textColor = theme.textColor;
+    this.backgroundColor = theme.backgroundColor;
   }
 
   getTheme() {
-    const borderColor = this.statusCode == StatusCode.Inactive ? this.textColor : TRANSPARENT;
+    const borderColor = this.statusCode === StatusCode.Inactive ? this.textColor : TRANSPARENT;
     return {
       'color': this.textColor,
       'background-color': this.backgroundColor,
