@@ -30,16 +30,16 @@ describe('StatusBadgeComponent', () => {
     component.statusCode = StatusCode.Approved;
     component.ngOnInit();
     expect(component.text).toEqual(APPROVED);
-    expect(component.backgroundColor).toEqual(BackgroundColor.Green);
-    expect(component.textColor).toEqual(TextColor.Green);
+    expect(component.theme.backgroundColor).toEqual(BackgroundColor.Green);
+    expect(component.theme.textColor).toEqual(TextColor.Green);
   });
 
   it('should render yellow theme with validation status', () => {
     component.statusCode = StatusCode.Validation;
     component.ngOnInit();
     expect(component.text).toEqual(VALIDATION);
-    expect(component.backgroundColor).toEqual(BackgroundColor.Yellow);
-    expect(component.textColor).toEqual(TextColor.Yellow);
+    expect(component.theme.backgroundColor).toEqual(BackgroundColor.Yellow);
+    expect(component.theme.textColor).toEqual(TextColor.Yellow);
   });
 
   it('should give default status creation', () => {
@@ -48,8 +48,8 @@ describe('StatusBadgeComponent', () => {
     const status = STATUS.find(status => status.id == StatusCode.Creation)
     expect(component.myStatus).toEqual(status!);
     expect(component.text).toEqual(CREATION);
-    expect(component.backgroundColor).toEqual(BackgroundColor.Blue);
-    expect(component.textColor).toEqual(TextColor.Blue);
+    expect(component.theme.backgroundColor).toEqual(BackgroundColor.Blue);
+    expect(component.theme.textColor).toEqual(TextColor.Blue);
   });
 
 });
