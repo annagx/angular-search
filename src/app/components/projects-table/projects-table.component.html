@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="search-container">
+      <h2>Recherche</h2>
+      <div class="search-project">
+        <mat-form-field class="input-container" appearance="outline">
+          <input matInput #userInput class="search-input" (keyup)="applyFilter(userInput.value)" placeholder="Saisir le nom">
+        </mat-form-field>
+          <button mat-mini-fab class="button-container" (click)="applyFilter(userInput.value)">
+            <mat-icon class="search-icon">search</mat-icon>
+          </button>
+      </div>
+    </div>
+
+    <div class="table-container">
+    <table mat-table [dataSource]="dataSource" 
+    matSort>
+
+      <!-- Colonne Nom -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Nom </th>
+        <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project">{{project.name}}</td>
+      </ng-container>
+  
+      <!-- Colonne Numero de projet -->
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header  sortActionDescription="Sort by project number"> No. Projet </th>
+        <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project">{{project.projectNumber}}</td>
+      </ng-container>
+  
+      <!-- Colonne Statut -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status"> Statut </th>
+        <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project"><app-status-badge [statusCode]="project.status"></app-status-badge></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <br>
+    <hr width="100%" size="1">
+
+    <mat-paginator 
+      #paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

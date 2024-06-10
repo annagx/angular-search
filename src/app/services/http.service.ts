@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 const PATH = '/assets/data.json';
 
-// providedIn: root fait en sorte que le service est disponible dans l'application
+// root fait en sorte qu'une instance du service est disponible dans l'application
 @Injectable({
   providedIn: 'root'
 })
