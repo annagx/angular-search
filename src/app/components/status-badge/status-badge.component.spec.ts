@@ -42,7 +42,7 @@ describe('StatusBadgeComponent', () => {
     expect(component.textColor).toEqual(TextColor.Yellow);
   });
 
-  it('should give default status - creation', () => {
+  it('should give default status creation', () => {
     component.statusCode = 99;
     component.ngOnInit();
     const status = STATUS.find(status => status.id == StatusCode.Creation)

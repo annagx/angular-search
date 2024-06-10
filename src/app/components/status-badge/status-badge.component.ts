@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { STATUS, StatusCode } from '../../constants';
 import { StatusDetails } from '../../interfaces/status-details';
 import { NgStyle } from '@angular/common';
+import { Theme } from '../../interfaces/theme';
 
 const TRANSPARENT = 'transparent';
 
@@ -15,25 +16,22 @@ const TRANSPARENT = 'transparent';
 export class StatusBadgeComponent implements OnInit{
   @Input() statusCode: number;
   myStatus: StatusDetails;
-  text: string;
-  textColor: string;
-  backgroundColor: string;
+  text: string = '';
+  theme: Theme;
 
   // Trouver le status correspond et ses details
   ngOnInit(): void {
     this.myStatus = STATUS.find(status => status.id == this.statusCode) || STATUS[StatusCode.Creation];
     this.text = this.myStatus.text;
-    
-    const theme = this.myStatus.theme;
-    this.textColor = theme.textColor;
-    this.backgroundColor = theme.backgroundColor;
+    this.theme = this.myStatus.theme;
   }
 
   getTheme() {
-    const borderColor = this.statusCode === StatusCode.Inactive ? this.textColor : TRANSPARENT;
+    const borderColor = this.statusCode === StatusCode.Inactive ? this.theme.textColor : TRANSPARENT;
+    
     return {
-      'color': this.textColor,
-      'background-color': this.backgroundColor,
+      'color': this.theme.textColor,
+      'background-color': this.theme.backgroundColor,
       'width': 'fit-content',
       'padding' : '2% 9%',
       'border-radius': '50px',

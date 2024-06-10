@@ -12,23 +12,24 @@
     </div>
 
     <div class="table-container">
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource" 
+    matSort>
 
       <!-- Colonne Nom -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Nom </th>
         <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project">{{project.name}}</td>
       </ng-container>
   
       <!-- Colonne Numero de projet -->
       <ng-container matColumnDef="number">
-        <th mat-header-cell *matHeaderCellDef> No. Projet </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header  sortActionDescription="Sort by project number"> No. Projet </th>
         <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project">{{project.projectNumber}}</td>
       </ng-container>
   
       <!-- Colonne Statut -->
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Statut </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status"> Statut </th>
         <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project"><app-status-badge [statusCode]="project.status"></app-status-badge></td>
       </ng-container>
 
@@ -40,6 +41,7 @@
     <hr width="100%" size="1">
 
     <mat-paginator 
+      #paginator
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons>
     </mat-paginator>

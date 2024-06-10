@@ -143,7 +143,7 @@ export enum StatusCode {
     {
         "id" : 10,
         "name" : "A1",
-        "projectNumber" : 120,
+        "projectNumber" : "120",
         "status" : StatusCode.Declined
     }
   ]

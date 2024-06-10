@@ -8,13 +8,14 @@ import { StatusBadgeComponent } from "./components/status-badge/status-badge.com
 import { NgStyle } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpService } from './services/http.service';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatIconModule, MatButtonModule, StatusBadgeComponent, NgStyle]
+    imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatIconModule, MatButtonModule, StatusBadgeComponent, NgStyle, MatSortModule]
 })
 
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -23,21 +24,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   subscription: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private httpService: HttpService) {}
 
   // Subscription a l'observable pour chercher la liste des projets
   ngOnInit(): void {
-    this.subscription = this.httpService.getProjects().subscribe((res) => {
-      this.dataSource = new MatTableDataSource<Project>(res);
+    this.subscription = this.httpService.getProjects().subscribe((result) => {
+      this.dataSource.data = result;
     })
 
     // Assigner la fonction personnalisee de filtrage
     this.dataSource.filterPredicate = customFilter;
   }
 
-  // Configurer le paginator en francais
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+
+    // Assigner fonction personnalisee de triage
+    this.dataSource.sortingDataAccessor = customSort;
+
+    // Configurer le paginator en francais
     this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Éléments par page';
     this.paginator._intl.firstPageLabel = 'Première page';
@@ -47,15 +54,25 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.paginator._intl.getRangeLabel = frenchRangeLabel;
   }
 
-  applyFilter(value: string) {
+  applyFilter(value: string): void {
     this.dataSource.filter = value;
   }
 
   // Se désabonner
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
 }
+
+// Convertir le numero du projet en int pour pouvoir trier
+const customSort = (item: Project, property: string) => {
+  switch(property) {
+    case 'number': return parseInt(item.projectNumber);
+    case 'status': return item.status;
+    case 'name' : return item.name;
+    default: return '';
+  }
+};
 
 // Filtrer seulement sur le nom et le numero de projet
 const customFilter = (data : Project, filterValue : string) => {
@@ -65,14 +82,12 @@ const customFilter = (data : Project, filterValue : string) => {
 
 // Traduire l'intervalle en francais
 const frenchRangeLabel = (page: number, pageSize: number, length: number) => {
-  if (length == 0 || pageSize == 0) { return `0 de ${length}`; }
+  if (length == 0 || pageSize == 0) return `0 de ${length}`;
 
   const startIndex = page * pageSize;
 
   // L'index de fin est le nombre le plus petit sans dépasser la longueur des items 
-  const endIndex = startIndex < length ?
-      Math.min(startIndex + pageSize, length) :
-      startIndex + pageSize;
+  const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
 
   return `${startIndex + 1}-${endIndex} de ${length}`;
 }
