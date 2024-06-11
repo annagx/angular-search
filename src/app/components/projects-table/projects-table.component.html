@@ -5,7 +5,7 @@
         <mat-form-field class="input-container" appearance="outline">
           <input matInput #userInput id="search-input" (keydown.enter)="applyFilter(userInput.value)" placeholder="Saisir le nom">
         </mat-form-field>
-          <button mat-mini-fab id="button-container" (click)="applyFilter(userInput.value)">
+          <button mat-mini-fab class="button-container" (click)="applyFilter(userInput.value)">
             <mat-icon class="search-icon">search</mat-icon>
           </button>
       </div>

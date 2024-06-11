@@ -15,12 +15,14 @@ describe('StatusBadgeComponent', () => {
       imports: [StatusBadgeComponent]
     })
     .compileComponents();
-    
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(StatusBadgeComponent);
     component = fixture.componentInstance;
     component.statusCode = 0;
     fixture.detectChanges();
-  });
+});
 
   it('should create', () => {
     expect(component).toBeTruthy();

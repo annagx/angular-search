@@ -80,14 +80,14 @@ describe('ProjectsTableComponent', () => {
 
   it('should call applyFilter function', () => {
     const applyFilterSpy = spyOn(component, 'applyFilter').and.callThrough();
-    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
+    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
     const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(applyFilterSpy).toHaveBeenCalled();
   });
 
   it('should ignore case and return projects containing string', () => {
-    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
+    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
     const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = 'gestion a';
     const mockClick = new MouseEvent('click');
@@ -96,7 +96,7 @@ describe('ProjectsTableComponent', () => {
   });
 
   it('should ignore leading and trailing spaces, and return projects containing string', () => {
-    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
+    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
     const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = '  Gestion A   ';
     const mockClick = new MouseEvent('click');
@@ -105,7 +105,7 @@ describe('ProjectsTableComponent', () => {
   });
 
   it('should ignore leading and trailing spaces and return project containing string', () => {
-    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
+    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
     const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = ' 12345 ';
     const mockClick = new MouseEvent('click');
