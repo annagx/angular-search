@@ -3,7 +3,6 @@ import { ProjectsTableComponent } from './projects-table.component';
 import { HttpService } from '../../services/http.service';
 import { PROJECTS } from '../../constants';
 import { Project } from '../../interfaces/project';
-import { MatTableDataSource } from '@angular/material/table';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
@@ -40,7 +39,7 @@ describe('ProjectsTableComponent', () => {
   it('should call applyFilter function', () => {
     const applyFilterSpy = spyOn(component, 'applyFilter').and.callThrough();
     const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+    const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.dispatchEvent(keydownEvent);
     expect(applyFilterSpy).toHaveBeenCalled();
   });
@@ -48,7 +47,7 @@ describe('ProjectsTableComponent', () => {
   it('should return complete list of projects', () => {
     const projectsCount = component.dataSource.data.length;
     const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+    const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = '';
     input.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(projectsCount);
@@ -56,24 +55,24 @@ describe('ProjectsTableComponent', () => {
 
   it('should return 0 project', () => {
     const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    const input = fixture.debugElement.query(By.css(".search-input"));
+    const input = fixture.debugElement.query(By.css("#search-input"));
     const inputElement = input.nativeElement;
     inputElement.value = 'abcd';
     inputElement.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(0);
   });
 
-  it('should ignore case and return more than one project', () => {
+  it('should ignore case and return projects containing string', () => {
     const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+    const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = 'gestion a';
     input.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(2);
   });
 
-  it('should ignore leading and trailing spaces and return more than one project', () => {
+  it('should ignore leading and trailing spaces and return projects containing string', () => {
     const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+    const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = '   Gestion A ';
     input.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(2);
@@ -81,46 +80,46 @@ describe('ProjectsTableComponent', () => {
 
   it('should call applyFilter function', () => {
     const applyFilterSpy = spyOn(component, 'applyFilter').and.callThrough();
-    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
+    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
     const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(applyFilterSpy).toHaveBeenCalled();
   });
 
-  it('should ignore case and return more than one project', () => {
-    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
-    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+  it('should ignore case and return projects containing string', () => {
+    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
+    const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = 'gestion a';
     const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(component.dataSource.filteredData.length).toEqual(2);
   });
 
-  it('should ignore leading and trailing spaces, and return more than one project', () => {
-    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
-    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+  it('should ignore leading and trailing spaces, and return projects containing string', () => {
+    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
+    const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = '  Gestion A   ';
     const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(component.dataSource.filteredData.length).toEqual(2);
   });
 
-  it('should ignore leading and trailing spaces and return a project', () => {
-    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
-    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+  it('should ignore leading and trailing spaces and return project containing string', () => {
+    const button = fixture.debugElement.query(By.css("#button-container")).nativeElement;
+    const input = fixture.debugElement.query(By.css("#search-input")).nativeElement;
     input.value = ' 12345 ';
     const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(component.dataSource.filteredData.length).toEqual(1);
   });
 
-  it('should return a value from observable', () => {
-    component.dataSource = new MatTableDataSource();
+  it('should return all projects', (done: DoneFn) => {
     spyOn(service, 'getProjects').and.returnValue(of(PROJECTS));
     service.getProjects().subscribe((result: Project[]) => {
       component.dataSource.data = result;
+      expect(component.dataSource.data.length).toBeGreaterThan(0);
+      done();
     });
-    expect(component.dataSource.data.length).toBeGreaterThan(0);
   });
 
 });

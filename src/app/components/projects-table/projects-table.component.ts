@@ -63,7 +63,7 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 }
 
-// Convertir le numero du projet en int pour pouvoir trier
+// Convertir le numero du projet en int pour pouvoir trier selon celui-ci
 const customSort = (item: Project, property: string) => {
   switch(property) {
     case 'number': return parseInt(item.projectNumber);

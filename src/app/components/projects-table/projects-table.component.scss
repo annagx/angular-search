@@ -29,6 +29,7 @@ h2 {
    justify-content: center;
  }
 
+ // couleur arriere-plan de la barre de recherche
  .mat-primary  {
   background-color: white;
 }
@@ -40,7 +41,7 @@ h2 {
     --mat-form-field-container-vertical-padding: 8px;
 }
 
-.button-container {
+#button-container {
    background: $common-green;
    margin-left: 5px;
    cursor: pointer;
@@ -70,7 +71,6 @@ th {
  }
 
 th, td {
-   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font-size: larger;
 }
 
