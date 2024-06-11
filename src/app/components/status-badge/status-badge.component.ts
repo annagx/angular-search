@@ -19,9 +19,9 @@ export class StatusBadgeComponent implements OnInit{
   text: string = '';
   theme: Theme;
 
-  // Trouver le status correspond et ses details
+  // Trouver le status correspondant et ses details
   ngOnInit(): void {
-    this.myStatus = STATUS.find(status => status.id == this.statusCode) || STATUS[StatusCode.Creation];
+    this.myStatus = STATUS.find(status => status.id === this.statusCode) || STATUS[StatusCode.Creation];
     this.text = this.myStatus.text;
     this.theme = this.myStatus.theme;
   }

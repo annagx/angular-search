@@ -3,7 +3,7 @@
       <h2>Recherche</h2>
       <div class="search-project">
         <mat-form-field class="input-container" appearance="outline">
-          <input matInput #userInput class="search-input" (keyup)="applyFilter(userInput.value)" placeholder="Saisir le nom">
+          <input matInput #userInput class="search-input" (keydown.enter)="applyFilter(userInput.value)" placeholder="Saisir le nom">
         </mat-form-field>
           <button mat-mini-fab class="button-container" (click)="applyFilter(userInput.value)">
             <mat-icon class="search-icon">search</mat-icon>
@@ -12,8 +12,7 @@
     </div>
 
     <div class="table-container">
-    <table mat-table [dataSource]="dataSource" 
-    matSort>
+    <table mat-table [dataSource]="dataSource" matSort>
 
       <!-- Colonne Nom -->
       <ng-container matColumnDef="name">
@@ -30,7 +29,9 @@
       <!-- Colonne Statut -->
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status"> Statut </th>
-        <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project"><app-status-badge [statusCode]="project.status"></app-status-badge></td>
+        <td mat-cell [ngStyle]="{'border-bottom': '1px solid black'}" *matCellDef="let project">
+            <app-status-badge [statusCode]="project.status"></app-status-badge>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

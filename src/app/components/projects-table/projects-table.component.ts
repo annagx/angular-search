@@ -32,16 +32,16 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     this.subscription = this.httpService.getProjects().subscribe((result) => {
       this.dataSource.data = result;
     })
-
-    // Assigner la fonction personnalisee de filtrage
-    this.dataSource.filterPredicate = customFilter;
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
 
     // Assigner fonction personnalisee de triage
     this.dataSource.sortingDataAccessor = customSort;
+
+    // Assigner la fonction personnalisee de filtrage
+    this.dataSource.filterPredicate = customFilter;
 
     // Configurer le paginator en francais
     this.dataSource.paginator = this.paginator;
@@ -81,7 +81,7 @@ const customFilter = (data : Project, filterValue : string) => {
 
 // Traduire l'intervalle en francais
 const frenchRangeLabel = (page: number, pageSize: number, length: number) => {
-  if (length == 0 || pageSize == 0) return `0 de ${length}`;
+  if (length === 0 || pageSize === 0) return `0 de ${length}`;
 
   const startIndex = page * pageSize;
 

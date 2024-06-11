@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProjectsTableComponent } from './projects-table.component';
 import { HttpService } from '../../services/http.service';
 import { PROJECTS } from '../../constants';
@@ -35,77 +34,87 @@ describe('ProjectsTableComponent', () => {
   });
 
   it('should have a non-null list of projects', () => {
-    expect(component.dataSource).not.toBeNull();
+    expect(component.dataSource.data.length).toBeGreaterThan(0);
   });
 
-  it('should have a paginator', () => {
-    expect(component.dataSource.paginator).not.toBeNull();
+  it('should call applyFilter function', () => {
+    const applyFilterSpy = spyOn(component, 'applyFilter').and.callThrough();
+    const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+    input.dispatchEvent(keydownEvent);
+    expect(applyFilterSpy).toHaveBeenCalled();
   });
 
   it('should return complete list of projects', () => {
     const projectsCount = component.dataSource.data.length;
-    const keyupEvent = new KeyboardEvent('keyup');
+    const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
     const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
     input.value = '';
-    input.dispatchEvent(keyupEvent);
+    input.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(projectsCount);
   });
 
   it('should return 0 project', () => {
-    const keyupEvent = new KeyboardEvent('keyup');
+    const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
     const input = fixture.debugElement.query(By.css(".search-input"));
     const inputElement = input.nativeElement;
     inputElement.value = 'abcd';
-    inputElement.dispatchEvent(keyupEvent);
+    inputElement.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(0);
   });
 
   it('should ignore case and return more than one project', () => {
-    const keyupEvent = new KeyboardEvent('keyup');
+    const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
     const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
     input.value = 'gestion a';
-    input.dispatchEvent(keyupEvent);
+    input.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(2);
   });
 
   it('should ignore leading and trailing spaces and return more than one project', () => {
-    const keyupEvent = new KeyboardEvent('keyup');
+    const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
     const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
-    input.value = '   gestion a ';
-    input.dispatchEvent(keyupEvent);
+    input.value = '   Gestion A ';
+    input.dispatchEvent(keydownEvent);
     expect(component.dataSource.filteredData.length).toEqual(2);
   });
 
   it('should call applyFilter function', () => {
-    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
-    button.addEventListener('click', () => component.applyFilter(''));
-    const mockClick = new MouseEvent('click');
     const applyFilterSpy = spyOn(component, 'applyFilter').and.callThrough();
+    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
+    const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(applyFilterSpy).toHaveBeenCalled();
   });
 
-  it('should return more than one project', () => {
+  it('should ignore case and return more than one project', () => {
     const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
     const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
-    input.value = ' gestion a';
-    button.addEventListener('click', () => component.applyFilter(input.value));
+    input.value = 'gestion a';
     const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(component.dataSource.filteredData.length).toEqual(2);
   });
 
-  it('should return a project', () => {
+  it('should ignore leading and trailing spaces, and return more than one project', () => {
     const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
     const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
-    input.value = ' 12345';
-    button.addEventListener('click', () => component.applyFilter(input.value));
+    input.value = '  Gestion A   ';
+    const mockClick = new MouseEvent('click');
+    button.dispatchEvent(mockClick);
+    expect(component.dataSource.filteredData.length).toEqual(2);
+  });
+
+  it('should ignore leading and trailing spaces and return a project', () => {
+    const button = fixture.debugElement.query(By.css(".button-container")).nativeElement;
+    const input = fixture.debugElement.query(By.css(".search-input")).nativeElement;
+    input.value = ' 12345 ';
     const mockClick = new MouseEvent('click');
     button.dispatchEvent(mockClick);
     expect(component.dataSource.filteredData.length).toEqual(1);
   });
 
-  it('should return value from observable', () => {
+  it('should return a value from observable', () => {
     component.dataSource = new MatTableDataSource();
     spyOn(service, 'getProjects').and.returnValue(of(PROJECTS));
     service.getProjects().subscribe((result: Project[]) => {

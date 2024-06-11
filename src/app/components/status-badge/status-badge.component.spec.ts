@@ -45,7 +45,7 @@ describe('StatusBadgeComponent', () => {
   it('should give default status creation', () => {
     component.statusCode = 99;
     component.ngOnInit();
-    const status = STATUS.find(status => status.id == StatusCode.Creation)
+    const status = STATUS.find(status => status.id === StatusCode.Creation)
     expect(component.myStatus).toEqual(status!);
     expect(component.text).toEqual(CREATION);
     expect(component.theme.backgroundColor).toEqual(BackgroundColor.Blue);

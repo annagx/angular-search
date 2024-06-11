@@ -1,5 +1,11 @@
-// couleurs personnalisees
+// variables de couleurs personnalisees
 $common-green: #01864e;
+
+h2 {
+  display: flex;
+  justify-content: left;
+  margin-left: 1%;
+}
 
  .container {
    display: inline-block;
@@ -18,12 +24,6 @@ $common-green: #01864e;
    align-items: start;
  }
 
- h2 {
-   display: flex;
-   justify-content: left;
-   margin-left: 1%;
- }
- 
  .search-project {
    display: flex;
    justify-content: center;
@@ -65,12 +65,10 @@ table {
 }
 
 th {
-   // en-tetes 
    font-weight: bold;
    border-bottom: 3px solid $common-green;
  }
 
- // en-tetes et donnees
 th, td {
    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font-size: larger;
