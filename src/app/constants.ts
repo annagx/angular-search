@@ -52,27 +52,27 @@ export enum StatusCode {
 
   export const STATUS: StatusDetails[] = [
     {
-        id: 0,
+        id: StatusCode.Approved,
         text: "Approuvé",
         theme: THEMES[StatusCode.Approved],
     },
     {
-        id: 1,
+        id: StatusCode.Validation,
         text: "Validation",
         theme: THEMES[StatusCode.Validation],
     },
     {
-        id: 2,
+        id: StatusCode.Refused,
         text: "Refusé",
         theme: THEMES[StatusCode.Refused],
     },
     {
-        id: 3,
+        id: StatusCode.Inactive,
         text: "Inactif",
         theme: THEMES[StatusCode.Inactive],
     },
     {
-        id: 4,
+        id: StatusCode.Creation,
         text: "Création",
         theme: THEMES[StatusCode.Creation],
     },
