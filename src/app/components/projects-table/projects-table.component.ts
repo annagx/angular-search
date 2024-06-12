@@ -9,6 +9,7 @@ import { NgStyle } from '@angular/common';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { Project } from '../../interfaces/project';
 import { HttpService } from '../../services/http.service';
+import { StatusCode } from '../../constants';
 
 @Component({
   selector: 'app-projects-table',
@@ -36,12 +37,8 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-
-    // Assigner fonction personnalisee de triage
-    this.dataSource.sortingDataAccessor = customSort;
-
-    // Assigner la fonction personnalisee de filtrage
-    this.dataSource.filterPredicate = customFilter;
+    this.dataSource.sortingDataAccessor = customSort; // Assigner fonction personnalisee de triage
+    this.dataSource.filterPredicate = customFilter; // Assigner la fonction personnalisee de filtrage
 
     // Configurer le paginator en francais
     this.dataSource.paginator = this.paginator;
@@ -67,7 +64,7 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 const customSort = (item: Project, property: string) => {
   switch(property) {
     case 'number': return parseInt(item.projectNumber);
-    case 'status': return item.status;
+    case 'status': return StatusCode[item.status];
     case 'name' : return item.name;
     default: return '';
   }
