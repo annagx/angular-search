@@ -5,7 +5,7 @@ import { Theme } from "./interfaces/theme";
 export enum StatusCode {
     Approved,
     Validation,
-    Declined,
+    Refused,
     Inactive,
     Creation
   }
@@ -64,7 +64,7 @@ export enum StatusCode {
     {
         id: 2,
         text: "Refusé",
-        theme: THEMES[StatusCode.Declined],
+        theme: THEMES[StatusCode.Refused],
     },
     {
         id: 3,
@@ -95,7 +95,7 @@ export enum StatusCode {
         "id" : 2,
         "name" : "Gestion C",
         "projectNumber" : "65432",
-        "status" : StatusCode.Declined
+        "status" : StatusCode.Refused
     },
     {
         "id" : 3,
@@ -131,7 +131,7 @@ export enum StatusCode {
         "id" : 8,
         "name" : "Gestion BB",
         "projectNumber" : "45678",
-        "status" : StatusCode.Declined
+        "status" : StatusCode.Refused
     },
     {
         "id" : 9,
@@ -144,6 +144,6 @@ export enum StatusCode {
         "id" : 10,
         "name" : "A1",
         "projectNumber" : "120",
-        "status" : StatusCode.Declined
+        "status" : StatusCode.Refused
     }
   ]
